@@ -1,9 +1,3 @@
-// Vehicle Hierarchy:
-// Create a base class Vehicle with an attribute maxSpeed. Derive classes Car and Truck
-// using virtual inheritance. Create a derived class HybridVehicle that inherits from both
-// Car and Truck. Write a program to ensure there is no duplication of the maxSpeed
-// attribute and display details of a HybridVehicle.
-
 #include <iostream>
 using namespace std;
 
@@ -30,7 +24,7 @@ public:
 class HybridVehicle : public Car, public Truck
 {
 public:
-    HybridVehicle(int speed) : Vehicle(speed) {} // Only need to initialize Vehicle
+    HybridVehicle(int speed) : Vehicle(speed), Car(speed), Truck(speed) {}
     void displaySpeed()
     {
         cout << "HybridVehicle maxSpeed: " << maxSpeed << " km/h" << endl;
@@ -40,7 +34,6 @@ public:
 int main()
 {
     HybridVehicle hv(120);
-
     hv.displaySpeed();
 
     return 0;
