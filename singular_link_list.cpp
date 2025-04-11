@@ -124,6 +124,24 @@ public:
     }
 
     // Time Complexity: O(n)
+    void reverse()
+    {
+        Node *prev = NULL;
+        Node *curr = head;
+        Node *next = NULL;
+
+        while (curr != NULL)
+        {
+            next = curr->next;
+            curr->next = prev;
+
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+    }
+    // Time Complexity: O(n)
     void printLinkedList()
     {
         Node *temp = head;
@@ -153,6 +171,28 @@ public:
             idx++;
         }
         return -1;
+    }
+
+    // Time Complexity: O(n+m)
+    void mergingLL(Node *head1, Node *head2)
+    {
+        if (head1 == NULL)
+            return head2;
+        if (head2 == NULL)
+            return head1;
+
+        // case1
+        if (head1->data <= head2->data)
+        {
+            head1->next = mergingLL(head1->next, head2);
+            return head1;
+        }
+        // case2
+        else
+        {
+            head2->next = mergingLL(head1, head2->next);
+            return head2;
+        }
     }
 };
 
